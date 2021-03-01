@@ -5,6 +5,7 @@ Simple stack layout for i3/sway wm.
 ## How it works
 
 ![Preview](./preview.gif)
+
 (proportion set with `stacki3 45`)
 
 _stacki3_ does only 3 things:
@@ -33,4 +34,4 @@ exec stacki3
 exec stacki3 45
 ```
 
-3. Restart i3/sway
+3. Log out and log back in
