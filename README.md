@@ -26,7 +26,11 @@ pip install --user stacki3
 2. Inside your i3/sway config add
 
 ```i3
-exec_always stacki3 45
+# Default with splitting 50:50
+exec stacki3
+# OR
+# Split first two windows 55:45
+exec stacki3 45
 ```
 
 3. Restart i3/sway
