@@ -15,7 +15,7 @@ def is_floating(container) -> bool:
         return container.type == "floating_con"
 
 
-def splitting(i3, _, width: int):
+def set_splitting(i3, _, width: int):
     focused = i3.get_tree().find_focused()
     workspace = focused.workspace()
     number_of_tiled_windows = len([leaf for leaf in workspace.leaves() if not is_floating(leaf)])
@@ -38,5 +38,6 @@ def main():
     args = parser.parse_args()
     width = min(max(args.width, 0), 100)
     i3 = Connection()
-    i3.on(Event.WINDOW_NEW, partial(splitting, width=width))
+    i3.on(Event.WINDOW_NEW, partial(set_splitting, width=width))
+    i3.on(Event.WINDOW_CLOSE, partial(set_splitting, width=width))
     i3.main()
