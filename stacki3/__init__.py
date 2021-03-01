@@ -28,8 +28,15 @@ def splitting(i3, _, width: int):
 
 def main():
     parser = argparse.ArgumentParser(description="Stack layout for i3/sway wm.")
-    parser.add_argument("width", type=int, nargs="?", default=50)
+    parser.add_argument(
+        "width",
+        type=int,
+        nargs="?",
+        default=50,
+        help="Optional width of second window in %%. Default: %(default)s",
+    )
     args = parser.parse_args()
+    width = min(max(args.width, 0), 100)
     i3 = Connection()
-    i3.on(Event.WINDOW_NEW, partial(splitting, width=args.width))
+    i3.on(Event.WINDOW_NEW, partial(splitting, width=width))
     i3.main()
