@@ -35,3 +35,8 @@ exec stacki3 45
 ```
 
 3. Log out and log back in
+
+## Inspiration
+
+[i3-master-stack](https://github.com/windwp/i3-master-stack)
+[autotiling](https://github.com/nwg-piotr/autotiling)
