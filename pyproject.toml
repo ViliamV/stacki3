@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "stacki3"
-version = "0.3.0"
+version = "1.0.0"
 description = "Stack layout for i3/sway wm."
 authors = ["Viliam Valent <stacki3@viliamvalent.com>"]
 license = "MIT"

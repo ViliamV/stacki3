@@ -4,6 +4,9 @@ Simple stack layout for i3/sway wm.
 
 ## How it works
 
+The main idea is this - I only want max two columns on the screen.
+More windows should be spawn vertically.
+
 ![Preview](./preview.gif)
 
 (proportion set with `stacki3 45`)
@@ -11,8 +14,8 @@ Simple stack layout for i3/sway wm.
 _stacki3_ does only 3 things:
 
 - when there is only **one** window set split to `horizontal`
-- when there are exactly **two** windows set split to `vertical`
-- _optionally_ when proportion is set with `width` argument (like in preview) resize the second window
+- when there are exactly **two** windows set split to `vertical` on both windows
+- _optionally_ when proportion is set with `width` argument (like in preview) resize the right window
 
 That's it!
 

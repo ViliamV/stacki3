@@ -22,12 +22,14 @@ async def set_splitting(i3, _, width: int) -> None:
     if focused is None:
         return
     workspace = focused.workspace()
-    number_of_tiled_windows = len([leaf for leaf in workspace.leaves() if not is_floating(leaf)])
-    if number_of_tiled_windows == 1:
+    tiled_windows = [leaf for leaf in workspace.leaves() if not is_floating(leaf)]
+    if len(tiled_windows) == 1:
         await focused.command("splith")
-    elif number_of_tiled_windows == 2:
-        await focused.command("splitv")
-        await focused.command(f"resize set width {width} ppt")
+    elif len(tiled_windows) == 2:
+        left, right = tiled_windows
+        await left.command("splitv")
+        await right.command("splitv")
+        await right.command(f"resize set width {width} ppt")
 
 
 async def amain():
@@ -42,8 +44,8 @@ async def amain():
     args = parser.parse_args()
     width = min(max(args.width, 0), 100)
     i3 = await Connection(auto_reconnect=True).connect()
-    i3.on(Event.WINDOW_NEW, partial(set_splitting, width=width)) # type: ignore
-    i3.on(Event.WINDOW_CLOSE, partial(set_splitting, width=width)) # type: ignore
+    i3.on(Event.WINDOW_NEW, partial(set_splitting, width=width))  # type: ignore
+    i3.on(Event.WINDOW_CLOSE, partial(set_splitting, width=width))  # type: ignore
     await i3.main()
 
 
